@@ -5,9 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import demo.programming.OptionalClass;
 import demo.programming.StreamApi;
 
 public class MyTestClass {
@@ -15,9 +13,9 @@ public class MyTestClass {
 	public void run() {
 
 		StreamApi streamApi = new StreamApi();
-		
+
 		List<String> courses = List.of("Spring", "Spring boot", "AWS", "Devops", "Reactjs", "SQL");
-		
+
 //		executeReverseLettersFromString();
 //		executeLengthOfEachWord(courses);
 
@@ -25,10 +23,50 @@ public class MyTestClass {
 //		optionalClass.executePredicateOnList();
 //		executeGetCountOfMaximumBallsInBasket();
 //		executeRearrangeZerosInArray();
-		streamApi.executeSortingGivenElements();
+//		streamApi.executeSortingGivenElements();
+		executeSwapZerosToEndOptimised();
 
 	}
-	
+
+	public void executeSwapZerosToEndOptimised() {
+
+		List<Integer> list = new ArrayList<>(Arrays.asList(2, 1, 0, 6, 0, 5, 0, 8, 0, 0, 7));
+		int lastNonZeroIndex = 0;
+
+//		Time Complexity - O(n) , Space Complexity - O(1)
+		// Move non-zero elements to the beginning
+		for (int i = 0; i < list.size(); i++) {
+			if (list.get(i) != 0) {
+				// Swap non-zero element to the correct position
+				Collections.swap(list, lastNonZeroIndex, i);
+				lastNonZeroIndex++;
+			}
+		}
+		
+		System.out.println("swapped list :" + list);
+	}
+
+	public void executeSwapZerosToEnd() {
+
+		List<Integer> list = new ArrayList<>(Arrays.asList(2, 1, 0, 6, 0, 5, 0, 8, 0, 0, 7));
+		int zeroCount = 0;
+		int index = 0;
+
+		// Remove zeros and count them
+		while (index < list.size()) {
+			if (list.get(index) == 0) {
+				list.remove(index);
+				zeroCount++; // Count zeros
+			} else {
+				index++;
+			}
+		}
+
+		// Append zeros at the end
+		for (int i = 0; i < zeroCount; i++) {
+			list.add(0);
+		}
+	}
 
 	public void executeGetCountOfMaximumBallsInBasket() {
 		List<Integer> lst1 = List.of(5, 10, 4, 3, 11, 15, 3);

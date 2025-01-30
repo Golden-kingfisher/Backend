@@ -20,16 +20,18 @@ public class Stack {
 	}
 	
 	public synchronized boolean push(int element) {
+		System.out.println("Entered the push method");
 		if(isFull()) return false;
 		++stackTop;
 		
-		try {Thread.sleep(3000); } catch (Exception e) {}
+		try {Thread.sleep(10000); } catch (Exception e) {}
 		
 		array[stackTop] = element;
 		return true;
 	}
 	
 	public synchronized int pop(){
+		System.out.println("Entered the pop method");
 		if(isEmpty()) return Integer.MIN_VALUE;
 		int obj = array[stackTop];
 		array[stackTop] = Integer.MIN_VALUE;
