@@ -7,9 +7,9 @@ public class ThreadTester {
 		System.out.println("Main thread started");
 
 //		executeWaitOperation();
-//		executeSynchronisationOperation();
+		executeSynchronisationOperation();
 //		executeThreadSleep();
-		executeThreadWait();
+//		executeThreadWait();
 	}
 
 	private void executeWaitOperation() {

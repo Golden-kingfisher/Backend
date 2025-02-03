@@ -3,7 +3,12 @@ package demo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import demo.programming.StreamApi;
@@ -24,8 +29,36 @@ public class MyTestClass {
 //		executeGetCountOfMaximumBallsInBasket();
 //		executeRearrangeZerosInArray();
 //		streamApi.executeSortingGivenElements();
-		executeSwapZerosToEndOptimised();
+//		executeSwapZerosToEndOptimised();
+		executeGetCountOfEachCharacter();
 
+	}
+
+	public void executeGetCountOfEachCharacter() {
+		String str = "welcome tommy ";
+
+		char[] ch = str.toCharArray();
+
+		HashMap<String, Integer> hm = new LinkedHashMap<>();
+		Set<Entry<String, Integer>> entrySet = hm.entrySet();
+
+		for (int i = 0; i < ch.length; i++) {
+//			String key = Character.toString(ch[i]);
+			String key = String.valueOf(ch[i]);
+
+			if (!Character.isWhitespace(ch[i])) {
+				if (hm.containsKey(key)) {
+					Integer val = hm.get(key);
+					hm.put(key, ++val);
+				} else
+					hm.put(key, 1);
+			}
+
+		}
+
+		for (Entry<String, Integer> entry : entrySet) {
+			System.out.println(entry.getKey() + " : " + entry.getValue());
+		}
 	}
 
 	public void executeSwapZerosToEndOptimised() {
@@ -42,7 +75,7 @@ public class MyTestClass {
 				lastNonZeroIndex++;
 			}
 		}
-		
+
 		System.out.println("swapped list :" + list);
 	}
 
